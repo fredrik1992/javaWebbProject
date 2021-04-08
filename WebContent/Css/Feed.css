@@ -1,0 +1,21 @@
+.pageWrapper{
+	height: 1100px;
+	width:100%;
+	
+}
+
+.navbarCustom{
+	position:relative;
+	top:-3%;
+}
+
+
+.addFeedButton{
+	
+	position:relative;
+	top:-5%;
+	left:50%;
+}
+.feedForm{
+	display:none;
+}
