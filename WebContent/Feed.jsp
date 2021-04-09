@@ -17,7 +17,7 @@
 		<%
 		String username = (String) session.getAttribute("username");
 		if (username == null) {
-			System.out.print("in redirect");
+			
 			response.sendRedirect("index.jsp");
 		}
 		%>
@@ -27,7 +27,19 @@
 		
 		<button class="addFeedButton btn btn-primary" onclick="openForm()"   href="" role="button">Add feed</button>
 
+		
+		
+
 		<%@ include file="Navbar.jsp"%>
+		
+<div class = "searchBoxTags">
+<div class="input-group">
+  <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+    aria-describedby="search-addon" />
+  <button type="submit" class="btn btn-outline-primary">search</button>
+</div>
+
+</div>		
 
 
 		<!-- hidden -->
@@ -36,8 +48,8 @@
 			<div class="form-group">
 				<label for="exampleFormControlSelect1">Select Tag</label> <select
 					class="form-control" id="exampleFormControlSelect1" name = "tag">
-					<option>1</option>
-					<option>2</option>
+					<option>Sun</option>
+					<option>Moon</option>
 					<option>3</option>
 					<option>4</option>
 					<option>5</option>
@@ -61,7 +73,7 @@
 		<%
 		String allFeeds = (String) session.getAttribute("allFeedsData");
 		if (allFeeds == null) {
-			System.out.print("in tag ridirect");
+			
 			response.sendRedirect("GetTagsController");
 
 		}
@@ -84,7 +96,7 @@
 					} else {
 				tag = splitFeeds[i];
 				//create element
-				out.print("<div class=\"col-md-4\"> <h2>Heading</h2> <p>" + text
+				out.print("<div class=\"col-md-4\"> <h2>Post</h2> <p>" + text
 						+ "</p> <p><a class=\"btn btn-secondary\" href=\"#\" role=\"button\">" + tag
 						+ " »</a></p> </div> ");
 					}

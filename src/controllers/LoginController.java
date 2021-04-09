@@ -72,7 +72,7 @@ public class LoginController extends HttpServlet {
 			
 			System.out.print("connection good and user exists");
 		}else {
-			System.out.print("username is wrong");
+			
 			 RequestDispatcher rd = request.getRequestDispatcher("Index.jsp");
 		        rd.forward(request, response);
 			//send them to index with a wrong username or password message

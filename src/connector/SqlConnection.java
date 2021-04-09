@@ -110,5 +110,30 @@ public class SqlConnection {
 		return null;
 		
 	}
+	
+	public static void addFeed(String text,String tag) {
+		// the program get all the way here
+		
+		try {
+			System.out.print(text);
+			System.out.print(tag);
+			String requstQuerry = "INSERT INTO `allfeed`(`textLine`, `tag`) VALUES (?,?)";
+			
+			stmt = conn.prepareStatement(requstQuerry); 
+
+			stmt.setString(1,text);
+			stmt.setString(2,tag);
+			
+			stmt.executeUpdate();
+		}catch (SQLException ex) {
+			System.out.print("SQLExepection" + ex.getMessage());
+			System.out.print("SQLState:" + ex.getSQLState());
+			System.out.print("VendorError:" + ex.getErrorCode());
+
+
+		}
+		 
+		
+	}
 
 }

@@ -16,6 +16,7 @@
 <%@ include file="Navbar.jsp" %>  
 
 <%
+
 String username=(String)session.getAttribute("username");
 if(username != null){
 	
