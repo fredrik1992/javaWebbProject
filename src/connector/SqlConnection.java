@@ -115,8 +115,7 @@ public class SqlConnection {
 		// the program get all the way here
 		
 		try {
-			System.out.print(text);
-			System.out.print(tag);
+			
 			String requstQuerry = "INSERT INTO `allfeed`(`textLine`, `tag`) VALUES (?,?)";
 			
 			stmt = conn.prepareStatement(requstQuerry); 
@@ -133,6 +132,36 @@ public class SqlConnection {
 
 		}
 		 
+		
+	}
+	
+	public static String getFeedsFromTag(String tag) {
+		connectSQL("feed");
+		String allFeeds = null;
+		try {
+			
+		 String requstQuerry = "SELECT `textLine`,`tag` FROM `allfeed` WHERE `tag` like ?";
+		 stmt = conn.prepareStatement(requstQuerry );
+		 stmt.setString(1,tag);
+		 rs = stmt.executeQuery();
+		
+
+		 while(rs.next()){
+			 allFeeds += rs.getString(1) + ";";
+			 allFeeds += rs.getString(2) + ";";
+			 
+		 }return allFeeds;
+
+	}catch (SQLException ex) {
+		System.out.print("SQLExepection" + ex.getMessage());
+		System.out.print("SQLState:" + ex.getSQLState());
+		System.out.print("VendorError:" + ex.getErrorCode());
+
+
+	}
+		
+		
+		return allFeeds;
 		
 	}
 

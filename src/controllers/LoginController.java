@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -57,7 +58,11 @@ public class LoginController extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		String uiColor = request.getParameter("uiColor");
+		System.out.print(uiColor);
 		
+		
+		 
 		userBean = new userBean(username,password);
 		
 		if(SqlConnection.connectSQL("login") && userBean.validating() ) {
@@ -65,7 +70,11 @@ public class LoginController extends HttpServlet {
 			
 			session.setAttribute("username", username);
 			session.setAttribute("password", password);
+			Cookie ckUiColor = new Cookie("uiColor",uiColor );
 			
+			ckUiColor.setMaxAge(120);
+			response.addCookie(ckUiColor);
+			 
 			RequestDispatcher rd = request.getRequestDispatcher("Feed.jsp");
 	        rd.forward(request, response);
 			

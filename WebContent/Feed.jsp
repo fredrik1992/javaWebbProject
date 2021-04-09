@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insert title here</title>
 <link rel="stylesheet" href="Css/Feed.css">
 <link rel="stylesheet"
@@ -17,37 +18,47 @@
 		<%
 		String username = (String) session.getAttribute("username");
 		if (username == null) {
-			
-			response.sendRedirect("index.jsp");
+
+			response.sendRedirect("Index.jsp");
 		}
 		%>
 
 		<%@ include file="Header.jsp"%>
 
-		
-		<button class="addFeedButton btn btn-primary" onclick="openForm()"   href="" role="button">Add feed</button>
 
-		
-		
+		<button class="addFeedButton btn btn-primary" onclick="openForm()"
+			href="" role="button">Add feed</button>
+
+
+
 
 		<%@ include file="Navbar.jsp"%>
-		
-<div class = "searchBoxTags">
-<div class="input-group">
-  <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-    aria-describedby="search-addon" />
-  <button type="submit" class="btn btn-outline-primary">search</button>
-</div>
 
-</div>		
+		<div class="searchBoxTags">
+			<div class="input-group">
+				<form action="<%=request.getContextPath()%>/GetFeedFromTag">
+					<input type="search" name="choosenTag" class="form-control rounded"
+						placeholder="Search" aria-label="Search"
+						aria-describedby="search-addon" />
+					<button type="submit" class="btn btn-outline-primary">search</button>
+				</form>
+				<form action="<%=request.getContextPath()%>/MakeAllFeedNull" method = "get">
+				<button type="submit" class="btn btn-outline-primary">reset</button>
+				</form>
+			</div>
 
+
+		</div>
+		<button onclick= test(); >test change</button>
 
 		<!-- hidden -->
-		<form class="feedForm" id="feedFormID" action = "<%=request.getContextPath() %>/AddTagsController" method = "post">
-			
+		<form class="feedForm" id="feedFormID"
+			action="<%=request.getContextPath()%>/AddTagsController"
+			method="post">
+
 			<div class="form-group">
 				<label for="exampleFormControlSelect1">Select Tag</label> <select
-					class="form-control" id="exampleFormControlSelect1" name = "tag">
+					class="form-control" id="exampleFormControlSelect1" name="tag">
 					<option>Sun</option>
 					<option>Moon</option>
 					<option>3</option>
@@ -55,11 +66,11 @@
 					<option>5</option>
 				</select>
 			</div>
-			
+
 			<div class="form-group">
 				<label for="exampleFormControlTextarea1">TextArea</label>
-				<textarea class="form-control" id="exampleFormControlTextarea1"
-					rows="3" name = "text"></textarea>
+				<textarea  class="form-control" id="exampleFormControlTextarea1"
+					rows="3" name="text" maxlength = "200"></textarea>
 			</div>
 			<input class="btn btn-primary" type="submit" value="Submit">
 		</form>
@@ -73,7 +84,7 @@
 		<%
 		String allFeeds = (String) session.getAttribute("allFeedsData");
 		if (allFeeds == null) {
-			
+
 			response.sendRedirect("GetTagsController");
 
 		}
@@ -108,7 +119,7 @@
 		</div>
 
 
-        <script type="text/javascript" src="Js/Feed.js"></script>
+		<script type="text/javascript" src="Js/Feed.js"></script>
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 			crossorigin="anonymous"></script>
@@ -120,6 +131,5 @@
 			src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 			crossorigin="anonymous"></script>
-		
 </body>
 </html>

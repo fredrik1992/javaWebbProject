@@ -23,6 +23,13 @@ function closeForm(){
 
 
 
-window.addEventListener("load", function() {
-  alert('Page is loaded');
-});
+function test(){
+	console.log("testy")
+	
+	 $("#headerBox").removeClass('bg-light').addClass('bg-dark');
+	 $("#navbarid").removeClass(' bg-light').addClass(' bg-dark');
+		
+		$("#headerBox").backgroundColor = "grey";// funkar inte
+      
+
+}
