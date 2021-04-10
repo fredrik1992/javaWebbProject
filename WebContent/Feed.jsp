@@ -13,7 +13,7 @@
 	crossorigin="anonymous">
 </head>
 <body>
-	<div class="pageWrapper">
+	<div class="pageWrapper" id = "pageWrap">
 
 		<%
 		String username = (String) session.getAttribute("username");
@@ -49,7 +49,7 @@
 
 
 		</div>
-		<button onclick= test(); >test change</button>
+		
 
 		<!-- hidden -->
 		<form class="feedForm" id="feedFormID"
@@ -94,7 +94,7 @@
 
 
 
-		<div class="row">
+		<div class= "row">
 
 			<%
 			if (allFeeds != null) {
@@ -107,7 +107,7 @@
 					} else {
 				tag = splitFeeds[i];
 				//create element
-				out.print("<div class=\"col-md-4\"> <h2>Post</h2> <p>" + text
+				out.print("<div class=\"test22 col-md-4\"> <h2>Post</h2> <p>" + text
 						+ "</p> <p><a class=\"btn btn-secondary\" href=\"#\" role=\"button\">" + tag
 						+ " »</a></p> </div> ");
 					}

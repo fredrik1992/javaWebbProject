@@ -24,12 +24,27 @@ function closeForm(){
 
 
 function test(){
-	console.log("testy")
+	let cookies = document.cookie;
 	
+	
+	uiColorChoice  = cookies.split("=")[1];
+	console.log(uiColorChoice)
+	if(uiColorChoice == "dark"){
 	 $("#headerBox").removeClass('bg-light').addClass('bg-dark');
 	 $("#navbarid").removeClass(' bg-light').addClass(' bg-dark');
+	 document.body.style.backgroundColor = "gray";
+	}else{
 		
-		$("#headerBox").backgroundColor = "grey";// funkar inte
+	}
+	
+
+		
       
 
 }
+
+window.onload = function() { //calls to check uiColor
+  test();
+};
+
+//need a on page load to check the cookie and add
