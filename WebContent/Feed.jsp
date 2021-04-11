@@ -15,7 +15,7 @@
 <body>
 	<div class="pageWrapper" id = "pageWrap">
 
-		<%
+		<%//checks if user is allredy logged in
 		String username = (String) session.getAttribute("username");
 		if (username == null) {
 
@@ -34,7 +34,7 @@
 
 		<%@ include file="Navbar.jsp"%>
 
-		<div class="searchBoxTags">
+		<div class="searchBoxTags"><!-- used to search for specific tags -->
 			<div class="input-group">
 				<form action="<%=request.getContextPath()%>/GetFeedFromTag">
 					<input type="search" name="choosenTag" class="form-control rounded"
@@ -51,7 +51,7 @@
 		</div>
 		
 
-		<!-- hidden -->
+		<!-- hidden opened with button -->
 		<form class="feedForm" id="feedFormID"
 			action="<%=request.getContextPath()%>/AddTagsController"
 			method="post">
@@ -79,13 +79,13 @@
 
 
 
-		<!-- make a request to get all  tags into a bean list that is saved somwhere not sure where ? -->
+		
 
-		<%
+		<%//chekcs wheter feed has allredy been loaded if not redirects to get data
 		String allFeeds = (String) session.getAttribute("allFeedsData");
 		if (allFeeds == null) {
 
-			response.sendRedirect("GetTagsController");
+			response.sendRedirect("GetFeedController");
 
 		}
 		%>
@@ -96,11 +96,12 @@
 
 		<div class= "row">
 
-			<%
+			<%//prints out all feeds with bootstrap
 			if (allFeeds != null) {
 				String[] splitFeeds = allFeeds.split(";");
 				String text = "";
 				String tag = "";
+				
 				for (int i = 0; i < splitFeeds.length; i++) {
 					if (i % 2 == 0) {
 				text = splitFeeds[i];

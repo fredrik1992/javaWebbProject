@@ -18,49 +18,52 @@ import connector.SqlConnection;
 @WebServlet("/AddTagsController")
 public class AddFeedController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AddFeedController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public AddFeedController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		HttpSession session = request.getSession();
-		
+
 		String text = request.getParameter("text");
 		String tag = request.getParameter("tag");
-		
-		if(SqlConnection.connectSQL("feed")) {
+
+		if (SqlConnection.connectSQL("feed")) { //checks server is good and then adds the feed
 			SqlConnection.addFeed(text, tag);
-			
-			String oldFeedData = (String)session.getAttribute("allFeedsData"); // gets the old ffed to add new data
-		
-			oldFeedData += text +";";
-			oldFeedData += tag +";";
-			
+
+			String oldFeedData = (String) session.getAttribute("allFeedsData"); // gets the old feed to add new data
+
+			oldFeedData += text + ";";
+			oldFeedData += tag + ";";
+
 			session.setAttribute("allFeedsData", oldFeedData);
-			
+
 			RequestDispatcher rd = request.getRequestDispatcher("Feed.jsp");
-	        rd.forward(request, response);
+			rd.forward(request, response);
 		}
-		
-		
+
 	}
 
 }

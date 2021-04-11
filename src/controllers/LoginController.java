@@ -21,72 +21,72 @@ import connector.SqlConnection;
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	userBean userBean;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoginController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//maby controll username and so on here to not sure
-		//System.out.print("in get");  //why is get called ? seems to be a problem somwhere
-		HttpSession session = request.getSession();
-		
-		String username=(String)session.getAttribute("username");
-		String password=(String)session.getAttribute("username");
-		if(username != null && password != null) {
-			  RequestDispatcher rd = request.getRequestDispatcher("Feed.jsp");
-		        rd.forward(request, response);
-		}
-		
+	public LoginController() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		HttpSession session = request.getSession();
+
+		String username = (String) session.getAttribute("username");
+		String password = (String) session.getAttribute("username");
+		
+		if (username != null && password != null) {
+			RequestDispatcher rd = request.getRequestDispatcher("Feed.jsp");
+			rd.forward(request, response);
+		}
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		
+
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String uiColor = request.getParameter("uiColor");
-		System.out.print(uiColor);
-		
-		
-		 
-		userBean = new userBean(username,password);
-		
-		if(SqlConnection.connectSQL("login") && userBean.validating() ) {
+	
+
+		userBean = new userBean(username, password);
+
+		if (SqlConnection.connectSQL("login") && userBean.validating()) {
 			HttpSession session = request.getSession();
-			
+
 			session.setAttribute("username", username);
 			session.setAttribute("password", password);
-			Cookie ckUiColor = new Cookie("uiColor",uiColor );
-			
-			ckUiColor.setMaxAge(120);
+			Cookie ckUiColor = new Cookie("uiColor", uiColor);
+
+			ckUiColor.setMaxAge(600);
 			response.addCookie(ckUiColor);
-			 
+
 			RequestDispatcher rd = request.getRequestDispatcher("Feed.jsp");
-	        rd.forward(request, response);
-			
-			
+			rd.forward(request, response);
+
 			System.out.print("connection good and user exists");
-		}else {
-			
-			 RequestDispatcher rd = request.getRequestDispatcher("Index.jsp");
-		        rd.forward(request, response);
-			//send them to index with a wrong username or password message
+		} else {
+
+			RequestDispatcher rd = request.getRequestDispatcher("Index.jsp");
+			rd.forward(request, response);
+			// send them to index with a wrong username or password message
 		}
 	}
-	
 
 }

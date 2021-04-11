@@ -18,31 +18,33 @@
 		<%@ include file="Header.jsp"%>
 
 
-
-
-
-
 		<%@ include file="Navbar.jsp"%>
 
-		<div class="uiButton dropdown" > 
-			<button class="btn btn-primary dropdown-toggle" type="button"id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose UI</button>
+		<div class="uiButton dropdown">
+			<button class="btn btn-primary dropdown-toggle" type="button"
+				id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false">Choose UI</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<button class="dropdown-item" href="#" onclick=chooseUi("dark")>Dark</button>
-				<button class="dropdown-item" href="#" onclick=chooseUi("white")>White</button>
-				<button class = "dropdown-item" href="#">White</button>
+				<button class="dropdown-item" href="#" onclick=chooseUi( "dark")>Dark</button>
+				<button class="dropdown-item" href="#" onclick=chooseUi( "white")>White</button>
+
 
 			</div>
 		</div>
 
-		<%
+
+
+		<%//if sucsessfuly loged in before redirects right away
 		String username = (String) session.getAttribute("username");
 		if (username != null) {
 
 			response.sendRedirect("LoginController");
+
 		}
 		%>
 
-		<form action="<%=request.getContextPath()%>/LoginController" method="post">
+		<form action="<%=request.getContextPath()%>/LoginController"
+			method="post">
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="basic-addon1">Enter</span>
@@ -51,14 +53,16 @@
 					placeholder="Username" aria-label="Username"
 					aria-describedby="basic-addon1  " required>
 			</div>
-			
-			<!-- hidden -->
-			
+
+			<!-- hidden data -->
+
 			<input id="uiChoice" class="uiChoice" type="hidden" name="uiColor">
-			
-			<input id="cookieAllow" class="cookieAllow" type="hidden" name="cookieAllow">
-		
+
+			<input id="cookieAllow" class="cookieAllow" type="hidden"
+				name="cookieAllow"> <input id="loginHasAttemptbeenMade"
+				type="hidden" name="loginHasAttemptbeenMade">
 			<!-- hidden -->
+
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="basic-addon1">Enter</span>
