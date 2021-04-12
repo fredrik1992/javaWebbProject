@@ -59,11 +59,11 @@
 			<div class="form-group">
 				<label for="exampleFormControlSelect1">Select Tag</label> <select
 					class="form-control" id="exampleFormControlSelect1" name="tag">
-					<option>Sun</option>
-					<option>Moon</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
+					<option>Humor</option>
+					<option>Drama</option>
+					<option>Angry</option>
+					<option>Prank</option>
+					<option>LOL</option>
 				</select>
 			</div>
 
