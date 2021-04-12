@@ -25,8 +25,8 @@
 				id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false">Choose UI</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<button class="dropdown-item" href="#" onclick=chooseUi( "dark")>Dark</button>
-				<button class="dropdown-item" href="#" onclick=chooseUi( "white")>White</button>
+				<button class="dropdown-item" href="#" onclick=chooseUi("dark")>Dark</button>
+				<button class="dropdown-item" href="#" onclick=chooseUi("white")>White</button>
 
 
 			</div>

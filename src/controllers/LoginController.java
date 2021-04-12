@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import beans.userBean;
 import connector.SqlConnection;
+import model.userBean;
 
 /**
  * Servlet implementation class LoginController
@@ -41,7 +41,7 @@ public class LoginController extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		String username = (String) session.getAttribute("username");
-		String password = (String) session.getAttribute("username");
+		String password = (String) session.getAttribute("password");
 		
 		if (username != null && password != null) {
 			RequestDispatcher rd = request.getRequestDispatcher("Feed.jsp");
@@ -63,6 +63,8 @@ public class LoginController extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String uiColor = request.getParameter("uiColor");
+		
+		System.out.print(uiColor);
 	
 
 		userBean = new userBean(username, password);

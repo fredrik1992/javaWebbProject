@@ -1,5 +1,6 @@
 
 function chooseUi (colorChoice){
+console.log(colorChoice);
 document.getElementById("uiChoice").value = colorChoice;
 }
 

@@ -1,7 +1,7 @@
 package controllers;
 
-import beans.AFeedBean;
 import connector.SqlConnection;
+import model.AFeedBean;
 
 import java.io.IOException;
 import java.util.ArrayList;

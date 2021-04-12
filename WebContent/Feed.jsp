@@ -110,7 +110,7 @@
 				//create element
 				out.print("<div class=\"test22 col-md-4\"> <h2>Post</h2> <p>" + text
 						+ "</p> <p><a class=\"btn btn-secondary\" href=\"#\" role=\"button\">" + tag
-						+ " »</a></p> </div> ");
+						+ " </a></p> </div> ");
 					}
 				}
 
