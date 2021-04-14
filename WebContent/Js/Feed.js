@@ -42,9 +42,15 @@ function changeUiColor(){
       
 
 }
+function changeUiText(){
+	console.log("in text")
+	document.getElementById("headerH1").innerHTML = "Feed"
+	document.getElementById("headerH4").innerHTML = "Share and add your own texts "
+}
 
 window.onload = function() { //calls to check uiColor
   changeUiColor();
+  changeUiText()
 };
 
 //need a on page load to check the cookie and add

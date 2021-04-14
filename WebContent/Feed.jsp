@@ -38,7 +38,7 @@
 			<div class="input-group">
 				<form action="<%=request.getContextPath()%>/GetFeedFromTag">
 					<input type="search" name="choosenTag" class="form-control rounded"
-						placeholder="Search" aria-label="Search"
+						placeholder="Tag" aria-label="Search"
 						aria-describedby="search-addon" />
 					<button type="submit" class="btn btn-outline-primary">search</button>
 				</form>
