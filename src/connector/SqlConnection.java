@@ -59,7 +59,7 @@ public class SqlConnection {
 					validated = true;
 				}
 
-			}
+			}//returnerna direkt
 
 			conn.endRequest();
 			conn.close();
@@ -116,7 +116,7 @@ public class SqlConnection {
 
 	}
 
-	public static void addFeed(String text, String tag) {
+	public static void addFeed(AFeedBean feedBean) {
 		// the program get all the way here
 
 		try {
@@ -124,8 +124,8 @@ public class SqlConnection {
 			String requstQuerry = "INSERT INTO `allfeed`(`textLine`, `tag`) VALUES (?,?)";
 
 			stmt = conn.prepareStatement(requstQuerry);
-            stmt.setString(1, text);
-			stmt.setString(2, tag);
+            stmt.setString(1, feedBean.getTextData());
+			stmt.setString(2, feedBean.getTagData());
 
 			stmt.executeUpdate();
 		} catch (SQLException ex) {

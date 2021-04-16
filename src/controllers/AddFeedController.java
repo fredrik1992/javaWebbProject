@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import connector.SqlConnection;
+import model.AFeedBean;
 
 /**
  * Servlet implementation class AddTagsController
@@ -35,6 +36,8 @@ public class AddFeedController extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		RequestDispatcher rd = request.getRequestDispatcher("Feed.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
@@ -49,14 +52,16 @@ public class AddFeedController extends HttpServlet {
 
 		String text = request.getParameter("text");
 		String tag = request.getParameter("tag");
+		
+		AFeedBean feed = new AFeedBean(text,tag);
 
 		if (SqlConnection.connectSQL("feed")) { //checks server is good and then adds the feed
-			SqlConnection.addFeed(text, tag);
+			SqlConnection.addFeed(feed);
 
 			String oldFeedData = (String) session.getAttribute("allFeedsData"); // gets the old feed to add new data
 
-			oldFeedData += text + ";";
-			oldFeedData += tag + ";";
+			oldFeedData += feed.getTextData() + ";";
+			oldFeedData += feed.getTagData() + ";";
 
 			session.setAttribute("allFeedsData", oldFeedData);
 
